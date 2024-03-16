@@ -22,10 +22,10 @@ namespace Cokkie_Cerez_.Controllers
 
 
             UserViewModel model = new UserViewModel();
-            if (_context.HttpContext.Request.Cookies["UserName"] != null)
+            if (Request.Cookies["UserName"] != null)
             {
-                string username = _context.HttpContext.Request.Cookies["UserName"].ToString();
-                string password = _context.HttpContext.Request.Cookies["Password"].ToString();
+                string username = Request.Cookies["UserName"].ToString();
+                string password = Request.Cookies["Password"].ToString();
 
 
                 model.Username = username;
@@ -46,12 +46,15 @@ namespace Cokkie_Cerez_.Controllers
                 option.Expires = DateTime.Now.AddMinutes(10);
                 option.Domain = "wissenhost.com";
                 option.Secure = true;
+                option.Path = "/user/";
+                option.SameSite = SameSiteMode.None;
+                
                 
 
                _context.HttpContext.Response.Cookies.Append("UserName", model.Username, option);
                 _context.HttpContext.Response.Cookies.Append("Password", model.Password, option);
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

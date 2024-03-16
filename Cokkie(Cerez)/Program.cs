@@ -27,6 +27,7 @@ namespace Cokkie_Cerez_
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCookiePolicy();
 
             app.UseAuthorization();
 
