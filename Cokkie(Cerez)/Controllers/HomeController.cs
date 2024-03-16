@@ -7,10 +7,10 @@ namespace Cokkie_Cerez_.Controllers
 {
     public class HomeController : Controller
     {
-        public IHttpContextAccessor _context;
+        
        
 
-        public HomeController(IHttpContextAccessor context)
+        public HomeController()
         {
             _context = context;
         }
@@ -49,8 +49,8 @@ namespace Cokkie_Cerez_.Controllers
                 
                 //15 dakika araştırıp bir bakınız.
 
-               _context.HttpContext.Response.Cookies.Append("UserName", model.Username, option);
-                _context.HttpContext.Response.Cookies.Append("Password", model.Password, option);
+               Response.Cookies.Append("UserName", model.Username, option);
+               Response.Cookies.Append("Password", model.Password, option);
             }
             return RedirectToAction("Index");
         }
