@@ -43,13 +43,11 @@ namespace Cokkie_Cerez_.Controllers
             if (model.Remember)
             {
                 CookieOptions option = new CookieOptions();
-                option.Expires = DateTime.Now.AddMinutes(10);
-                option.Domain = "wissenhost.com";
-                option.Secure = true;
-                option.Path = "/user/";
-                option.SameSite = SameSiteMode.None;
+                option.Expires = DateTime.Now.AddDays(1);
+                option.Path = "/";
+        
                 
-                
+                //15 dakika araştırıp bir bakınız.
 
                _context.HttpContext.Response.Cookies.Append("UserName", model.Username, option);
                 _context.HttpContext.Response.Cookies.Append("Password", model.Password, option);
